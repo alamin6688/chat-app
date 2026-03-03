@@ -8,28 +8,72 @@
     <!-- Include the compiled Tailwind CSS file -->
     <link rel="stylesheet" href="/output.css">
 
+    <style>
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px) scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .animate-bubble {
+            animation: slideIn 0.3s ease-out forwards;
+        }
+
+        #messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        #messages::-webkit-scrollbar-thumb {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+
+        #messages::-webkit-scrollbar-thumb:hover {
+            background: #cbd5e1;
+        }
+    </style>
 </head>
 
-<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center text-gray-800">
+<body class="bg-gradient-to-br from-slate-50 to-slate-100 min-h-screen flex flex-col items-center justify-center p-4">
 
-    <div class="bg-white p-8 rounded-xl shadow-lg max-w-md w-full">
-        <h1
-            class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-4 text-center">
-            Socket.IO Chat App</h1>
-
-        <p class="text-gray-600 text-center mb-6">Connected to server. See console for messages.</p>
+    <div class="bg-white/80 backdrop-blur-md p-6 rounded-3xl shadow-2xl max-w-md w-full border border-white">
+        <div class="flex items-center justify-between mb-6">
+            <h1 class="text-2xl font-black bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent">
+                Socket Chat
+            </h1>
+            <div
+                class="flex items-center gap-2 px-3 py-1 bg-green-50 text-green-600 rounded-full text-xs font-bold ring-1 ring-inset ring-green-600/20">
+                <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                ONLINE
+            </div>
+        </div>
 
         <div id="messages"
-            class="h-48 overflow-y-auto border border-gray-200 rounded-lg p-3 mb-4 bg-gray-50 flex flex-col gap-2">
+            class="h-[400px] overflow-y-auto mb-6 bg-slate-50/50 rounded-2xl p-4 flex flex-col gap-1 border border-slate-100 shadow-inner">
             <!-- Messages will appear here -->
         </div>
 
         <form id="message-form" class="flex gap-2">
-            <input type="text" id="message-input" placeholder="Type a message..."
-                class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+            <input type="text" id="message-input" placeholder="Aa" autocomplete="off"
+                class="flex-1 px-4 py-3 bg-slate-100/50 border-none rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all placeholder:text-gray-400">
             <button type="submit"
-                class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition-colors shadow-md hover:shadow-lg">
-                Send
+                class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold p-3 rounded-2xl transition-all shadow-lg hover:shadow-indigo-200 active:scale-95 group">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6 transform rotate-90 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                </svg>
             </button>
         </form>
     </div>

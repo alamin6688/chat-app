@@ -23,6 +23,10 @@ io.on('connection', (socket) => {
 
     socket.on('message', (data) => {
         console.log('message from client', data)
-        io.emit('message', data) // Broadcast to ALL clients
+        // Send as object so client knows who's who
+        io.emit('message', {
+            text: data,
+            senderId: socket.id
+        })
     })
 })
