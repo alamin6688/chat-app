@@ -1,4 +1,4 @@
-# 💬 Socket.IO Real-Time Chat App
+# 💬 IO CHAT(Socket.IO Real-Time Chat App)
 
 A real-time chat application built with **Node.js**, **Express**, **Socket.IO**, and **Tailwind CSS**. Messages sent by any user are instantly broadcast to all connected clients — no page refresh needed.
 
